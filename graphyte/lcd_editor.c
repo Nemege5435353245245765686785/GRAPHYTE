@@ -12,8 +12,8 @@
 #define SHM_NAME "/lcd_custom_chars"
 #define WIDTH 80
 #define HEIGHT 16
-#define FONT_W 10
-#define FONT_H 16
+#define FONT_W 5
+#define FONT_H 8
 #define ASCII_START 32
 #define ASCII_END 126
 #define PID_FILE "/tmp/lcd_driver.pid"
