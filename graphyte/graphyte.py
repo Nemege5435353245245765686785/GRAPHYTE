@@ -1,5 +1,6 @@
 import subprocess
 import os
+import time
 
 LCD_EDITOR = "./lcd_editor"
 
@@ -39,31 +40,35 @@ def scroll_text(y, speed, text, direction=1, font=None):
     args += ["--scroll-text", str(y), str(speed), text, str(direction)]
     return run_cmd(args)
 
-def draw_line(x0, y0, x1, y1, invert=False):
-    cmd = "--invert-line" if invert else "--line"
-    return run_cmd([cmd, str(x0), str(y0), str(x1), str(y1)])
+def draw_line(x0, y0, x1, y1):
+    return run_cmd(["--line", str(x0), str(y0), str(x1), str(y1)])
 
-def draw_rect(x, y, w, h, filled=False, invert=False):
-    if filled and invert:
-        cmd = "--invert-rect-filled"
-    elif filled:
-        cmd = "--rect-filled"
-    elif invert:
-        cmd = "--invert-rect"
-    else:
-        cmd = "--rect"
-    return run_cmd([cmd, str(x), str(y), str(w), str(h)])
+def invert_line(x0, y0, x1, y1):
+    return run_cmd(["--invert-line", str(x0), str(y0), str(x1), str(y1)])
 
-def draw_circle(xc, yc, r, filled=False, invert=False):
-    if filled and invert:
-        cmd = "--invert-circle-filled"
-    elif filled:
-        cmd = "--circle-filled"
-    elif invert:
-        cmd = "--invert-circle"
-    else:
-        cmd = "--circle"
-    return run_cmd([cmd, str(xc), str(yc), str(r)])
+def draw_rect(x, y, w, h):
+    return run_cmd(["--rect", str(x), str(y), str(w), str(h)])
+
+def invert_rect(x, y, w, h):
+    return run_cmd(["--invert-rect", str(x), str(y), str(w), str(h)])
+
+def draw_filled_rect(x, y, w, h):
+    return run_cmd(["--rect-filled", str(x), str(y), str(w), str(h)])
+
+def invert_filled_rect(x, y, w, h):
+    return run_cmd(["--invert-rect-filled", str(x), str(y), str(w), str(h)])
+
+def draw_circle(xc, yc, r):
+    return run_cmd(["--circle", str(xc), str(yc), str(r)])
+
+def invert_circle(xc, yc, r):
+    return run_cmd(["--invert-circle", str(xc), str(yc), str(r)])
+
+def draw_filled_circle(xc, yc, r):
+    return run_cmd(["--circle-filled", str(xc), str(yc), str(r)])
+
+def invert_filled_circle(xc, yc, r):
+    return run_cmd(["--invert-circle-filled", str(xc), str(yc), str(r)])
 
 # -----------------------------
 # Debug
@@ -73,9 +78,16 @@ def enable_debug():
 # -----------------------------
 # Example usage (if run directly)
 if __name__ == "__main__":
-    print(clear())                       # Clear display
-    print(draw_text(0, 0, "GRAPHYTE", "gazette.txt"))  # Draw text
-	time.sleep(1)
-    print(draw_line(0, 0, 79, 15))       # Draw diagonal line
-    print(draw_rect(10, 2, 20, 5))       # Draw rectangle
-    print(draw_circle(40, 8, 6, filled=True))  # Draw filled circle
+    print(clear())
+    print(draw_text(0, 0, "GRAPHYTE", "gazette.txt"))
+    time.sleep(1)
+    print(draw_line(0, 0, 79, 15))
+    print(invert_line(0, 0, 79, 15))
+    print(draw_rect(10, 2, 20, 5))
+    print(invert_rect(10, 2, 20, 5))
+    print(draw_filled_rect(5, 5, 10, 4))
+    print(invert_filled_rect(5, 5, 10, 4))
+    print(draw_circle(40, 8, 6))
+    print(invert_circle(40, 8, 6))
+    print(draw_filled_circle(40, 8, 6))
+    print(invert_filled_circle(40, 8, 6))
