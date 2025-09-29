@@ -52,10 +52,10 @@ def draw_rect(x, y, w, h):
 def invert_rect(x, y, w, h):
     return run_cmd(["--invert-rect", str(x), str(y), str(w), str(h)])
 
-def draw_filled_rect(x, y, w, h):
+def draw_rect_filled(x, y, w, h):
     return run_cmd(["--rect-filled", str(x), str(y), str(w), str(h)])
 
-def invert_filled_rect(x, y, w, h):
+def invert_rect_filled(x, y, w, h):
     return run_cmd(["--invert-rect-filled", str(x), str(y), str(w), str(h)])
 
 def draw_circle(xc, yc, r):
@@ -64,10 +64,10 @@ def draw_circle(xc, yc, r):
 def invert_circle(xc, yc, r):
     return run_cmd(["--invert-circle", str(xc), str(yc), str(r)])
 
-def draw_filled_circle(xc, yc, r):
+def draw_circle_filled(xc, yc, r):
     return run_cmd(["--circle-filled", str(xc), str(yc), str(r)])
 
-def invert_filled_circle(xc, yc, r):
+def invert_circle_filled(xc, yc, r):
     return run_cmd(["--invert-circle-filled", str(xc), str(yc), str(r)])
 
 # -----------------------------
