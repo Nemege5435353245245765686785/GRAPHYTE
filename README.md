@@ -11,7 +11,7 @@ It provides both a **C-based display driver** and a **Python wrapper**, making i
 2. Compile the C programs:
 
 ```bash
-gcc lcd.c -lpigpio -o lcd
+gcc lcd.c -l wiringPi -o lcd
 gcc lcd_editor.c -o lcd_editor
 ```
 
